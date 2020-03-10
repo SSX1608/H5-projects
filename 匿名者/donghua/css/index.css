@@ -1,0 +1,227 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+body{
+	background: url(../image/bg.jpg);
+	background-size:100% 100%;
+	overflow: hidden;
+}
+
+header{
+	position: relative;
+	height:10vh;
+	line-height: 10vh;
+}
+.title{
+	text-align: center;
+	font-size: 0.4rem;
+	color: #fff;	
+}
+.music{
+	position: absolute;
+	right: 20px;
+	top: 3vh;
+	width: .4rem;
+	height: .4rem;
+	border-radius: 50%;
+	border: solid 2px #fff;
+	background-image: url('../image/play.gif');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 60%;
+}
+/*中间弹幕区域*/
+.top{
+	height:57vh;/*5*/
+	position: relative;
+}
+.portrait{
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	margin: auto;
+	width: 2.2rem;
+	border-radius: 50%;
+	border: 1px solid #fff;
+}
+/*弹幕框样式 开始*/
+.dm-text{
+	position: absolute;
+	border: 1px solid #00a0e9;
+	background: #F6F6F6;
+	border-radius:4px;
+	font-size: 0.2rem;
+	padding: 0.04rem 0.1rem 0.06rem 0.4rem;
+	background-image:url('../image/zanNO.png');
+	background-repeat:no-repeat;
+	background-size:0.2rem;
+	background-position: 0.15rem;
+	white-space: nowrap;
+	cursor: pointer;
+	animation: yidong 5s steps(1000) infinite;
+}
+@keyframes yidong{
+	from{
+		right: -3rem;
+	}
+	to{
+		right: 8rem;
+	}
+}
+
+/*弹幕框样式 结束*/
+/*底部评论区域*/
+.footer{
+	height: 30vh;
+	padding: 0 0.3rem;
+}
+.div-inp{
+	text-align: center;
+	height: 0.5rem;
+	line-height: 0.5rem;
+	font-size: 0;
+	margin-top: 0.45rem;
+}
+.div-inp input{	
+	background: none;
+	border: none;
+	border-bottom:1px solid #8F9DBA;
+	width: 80%;
+	margin-right: 0.2rem;
+	color: #fff;
+	font-size: 0.3rem;
+	outline: none;
+}
+.ensure-span{			
+	cursor: pointer;
+	font-size: 0.2rem;
+	padding: 0.06rem 0.15rem;
+	background: #F6F6F6;
+	border-radius:4px;
+	color: #1D5CCD;
+	width: 15%;
+	
+}
+.spitslot{
+	height: 1.3rem;
+	position: relative;
+	margin-top: 0.1rem;
+	margin-bottom: 0.1rem;
+}
+.spitslot>div>div{
+	float: left;
+	border: 1px dashed #8F9DBA;
+	color: #C1C0C4;
+	font-size: 0.2rem;
+	border-radius:4px;
+	padding: 0.06rem;
+	overflow: hidden;
+	margin: 0.06rem 0.15rem 0.06rem 0;
+
+}
+#exchange{
+	position: absolute;
+	right: 0.2rem;
+	bottom: 0.07rem;
+	color: #fff;
+	font-size: 0.2rem;
+}
+#creation,
+#management{
+	border: 1px solid #fff;
+	border-radius:4px;
+	font-size: 0.3rem;
+	text-align: center;
+	color: #fff;
+	padding: 0.1rem;
+}
+.shearText{
+	font-size: 0.25rem;
+	text-align: center;
+	color: #fff;
+	padding: 0.1rem;
+	margin-top: .5rem;
+	line-height: .5rem;
+}
+.signature{
+	margin-top: .3rem;
+	font-size: .18rem;
+	text-align: center;
+	color: #999;
+}
+.pag2,.pag3,.pag4{
+	display: none;
+}
+.noneCss{
+	display: none;
+}
+.blockCss{
+	display: block;
+}
+.first{
+	position: relative;
+	top: -.5rem;
+}
+.layui-m-layer0 .layui-m-layerchild{
+	width: 65%;
+	height: auto;
+	height: 5rem;
+}
+.layui-m-layerbtn{
+	height: 40px;
+	line-height: 40px;
+	font-weight: bold;
+}
+.layui-m-layerbtn span[yes]{
+	color: #fff;
+	background-color: #c81623;
+	border-radius: 0 0 5px 0;
+}
+li {
+	list-style-type:none;
+	height: 40px !important;
+	line-height: 55px !important;
+	font-size: .24rem;
+	color: #6d6666;
+	border-bottom: solid 1px #d0c6c6;
+	text-align: left;
+}
+li input{
+	position: relative;
+	left: -18px;
+	bottom: -5px;
+}
+.recoTitle{
+	background-color: #e2dcdc;
+	height: 40px;
+	line-height: 40px;
+	font-size: .3rem;
+	border-radius: 5px;
+}
+.layui-m-layercont{
+	padding: 0;
+}
+
+
+div.textChange{
+  display: inline-block;
+  height:20px;
+  width:80%;
+  white-space:nowrap;
+  overflow:hidden;
+  font-size: .3rem;
+  color: #fff;
+  border-bottom:1px solid #8F9DBA;
+  margin-right: .2rem;
+}
+div.textChange span{
+  display: inline-block;
+  width: 300px;
+  text-align: left;
+  color: #8F9DBA;
+  position: relative;
+  bottom: 5px;
+}

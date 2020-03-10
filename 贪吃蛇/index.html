@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=yes" />
+		<style>
+		    * {
+		        padding: 0;
+		        margin: 0;
+		    }
+		    html, body {
+		        height: 100%;
+		    }
+		    
+		    h1, h2 {
+		        text-align: center;
+		    }
+		    
+		    #map {
+		        border: 2px solid gold;
+		        margin: 0 auto;
+		    }
+		    
+		    .row {
+		        height:  10px;
+		    }
+		    
+		    .cell {
+		        width: 20px;
+		        height: 20px;
+		        border: 1px solid black;
+		        box-sizing: border-box;
+		        float: left;
+		    }
+		    
+		    .active {
+		        background-color: purple;
+		    }
+		    .startBtn{
+                text-align: center;
+                margin-top: 10px;
+            }
+            .startBtn button{
+                width: 100px;
+                height: 50px;
+                background-color: green;
+                color: white;
+                font-size: 20px;
+            }
+		</style>
+	</head>
+	<body>
+	    <h1>贪吃蛇</h1>
+	    <h2 id="score">0</h2>
+	    <div id="map"></div>
+        <div class="startBtn">
+            <button onclick="start(this)">start</button>
+        </div>
+	</body>
+</html>
+<script src="js/touch.js"></script>
+<script>
+    // 获取mapDiv
+    var mapDiv = document.getElementById('map');
+    
+    // 地图数组
+    var mapArr = [];
+    
+    // 蛇的数组
+    var snake = [];
+    
+    // 蛇头的当前位置
+    var x = 0, y = 2;
+    
+    // 食物的位置
+    var foodX = 0, foodY = 0;
+    
+    // 蛇前进的方向
+    var direction = "r";
+    
+    // 蛇前进的速度
+    var speed = 200;
+    
+    // 30行, 30列
+    var row = 20, column = 20;
+    
+    // 能否改变方向
+    var flag = true;
+    
+    var timeout;
+    
+    mapDiv.style.width = column * 20 + 'px';
+    mapDiv.style.height = row * 20 + 'px';
+    // 如何创建地图
+    for (var i = 0; i < row; i++) {
+        
+        // 创建行div
+        var rowDiv = document.createElement('div');
+        rowDiv.className = "row";
+        
+        var rowArr = [];
+        
+        // 拼接
+        mapDiv.appendChild(rowDiv);
+        
+        for (var j = 0; j < column; j++) {
+            // 创建小div
+            var cellDiv = document.createElement('div');
+            
+            cellDiv.className = "cell";
+            
+            rowArr.push(cellDiv);
+            
+            rowDiv.appendChild(cellDiv);   
+        }
+        
+        mapArr.push(rowArr);
+    }
+    
+    // 创建小蛇
+    for (var i = 0; i < 3; i++) {
+        // 把地图中的前三个div给小蛇
+        snake[i] = mapArr[0][i];
+        
+        snake[i].className = "cell active";
+    }
+    
+    
+    // 创建食物
+    function randomFood() {
+        foodX = Math.floor(Math.random() * column);//坐标就是在二维数组里的索引
+        foodY = Math.floor(Math.random() * row);
+        
+        // 判断食物是否在蛇身上
+        if (mapArr[foodX][foodY].className == "cell active") {
+            randomFood();
+        } else {
+            mapArr[foodX][foodY].className = "cell active";
+        }
+    }
+    randomFood();
+    
+function start(ele){
+    ele.innerText = "pause";
+    // 蛇运动的函数
+    function move() {
+        
+        clearTimeout(timeout);
+        flag = true;
+        
+        switch (direction) {
+            // 向右走
+            case "r": 
+                y++;
+                break;
+            
+            // 向左走
+            case "l":
+                y--;
+                break;
+             
+            // 向上走
+            case "u":
+                x--;
+                break;
+            
+            // 向下走
+            case "d":
+                x++;
+                break;
+                
+            default:
+                break;
+        }
+        
+        // 判断蛇是否撞到了墙
+        if (x < 0 || x >= column || y < 0 || y >= row) {
+            clearInterval(timer);
+            alert("Game Over!");
+            return;
+        }
+        
+        // 判断蛇是否咬到了自己
+        for (var i = 1; i < snake.length; i++) {
+            if (mapArr[x][y] == snake[i]) {
+                clearInterval(timer);
+                alert("Game Over!");
+                return;
+            }
+        }
+        
+        
+        // 判断是否咬到了食物，蛇头的位置等于实物的位置
+        if (x == foodX && y == foodY) {
+            snake.push(mapArr[x][y]);
+            randomFood();
+        } else {
+            snake[0].className = "cell";
+            snake.shift();
+            mapArr[x][y].className = "cell active";
+            snake.push(mapArr[x][y]);
+        }
+        
+    }
+    
+    var timer = setInterval(move, speed);
+    
+    // 键盘事件
+    document.onkeydown = function(event) {
+        
+        if (flag) {
+            flag = false;
+            timeout = setTimeout(function() {
+                flag = true;
+            }, speed);
+        } else {
+            return;
+        }
+        
+        
+        // 特殊情况
+        if (direction == "r" && event.keyCode == 37) {
+            return;
+        } else if (direction == "l" && event.keyCode == 39) {
+            return;
+        } else if (direction == "u" && event.keyCode == 40) {
+            return;
+        } else if (direction == "d" && event.keyCode == 38) {
+            return;
+        }
+        
+        switch(event.keyCode) {
+            case 37:
+                direction = "l";
+                break;
+            case 38:
+                direction = "u";
+                break;
+            case 39:
+                direction = "r";
+                break;
+            case 40:
+                direction = "d";
+                break;
+            default: 
+                break;
+        }
+    }
+    
+    
+    // 兼容移动端
+    
+    touch.on('#target', 'touchstart', function(ev){
+        ev.preventDefault();
+    });
+    
+    touch.on(document, 'swipeleft swiperight swipeup swipedown', function (event) {
+        
+        
+        if (flag) {
+            flag = false;
+            timeout = setTimeout(function() {
+                flag = true;
+            }, speed);
+        } else {
+            return;
+        }
+        
+        switch (event.type) {
+            case "swipeleft":
+                if (direction != "r") {
+                    direction = "l";
+                }
+                break;
+            case "swiperight":
+                if (direction != "l") {
+                    direction = "r";
+                }
+                break;
+            case "swipedown":
+                if (direction != "u") {
+                    direction = "d";
+                }
+                break;
+            case "swipeup":
+                if (direction != "d") {
+                    direction = "u";
+                }
+                break;
+            default:
+                break;
+            
+            
+        }
+        
+        
+    });
+    
+}
+    
+    
+    
+    
+</script>

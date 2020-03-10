@@ -1,0 +1,97 @@
+body{
+  background: #edebeb;
+}
+
+.range-holder{
+
+	width: 200px;
+	height: 50px;
+	margin:0 auto;
+	transform: scaleX(0);
+	transition: all ease .3s,transform .3s;
+
+	
+	
+}
+
+.dragdealer {
+  position: relative;
+  height: 24px;
+  background: #082c41;
+  border-radius: 20px;
+  border: 3px solid #078ea2;
+}
+.dragdealer .handle {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.stripe{
+	background: -webkit-linear-gradient(left, #00f6fc , #2283dc);
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 2px;
+	height: 14px;
+	border-radius: 20px;
+}
+.stripe2{
+	background: -webkit-linear-gradient(left, #00f6fc , #2283dc);
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 2px;
+	height: 14px;
+	border-radius: 20px;
+}
+
+
+.square{
+  position: absolute;
+  top: 0;
+  left: 0;	  
+  margin-top: -13px;
+  margin-left: -10px;
+  cursor: pointer;
+  width: 20px;
+  height:50px; 
+  background-image:url(../img/02/Sliding-button.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: #FFF;
+  font-size: 14px;
+  line-height: 30px;
+  text-align: center;
+  padding-top: 13px;
+
+}
+
+.menu-line{width: 50%; margin: 2px auto; height: 5px; background: #FFF; display: block;}
+
+.infobox1{
+	
+}
+
+	
+	.titlebar{
+		background: #008da8;
+		color: #FFF;
+		padding: .5em;
+     	line-height: 1.5em;
+		font-size: 15px;
+	}
+	#plan-holder{font-weight: bold;}
+	
+	.innerbox{
+		padding: 1em 0;
+	}
+	
+	.info-price{color: #e07c00; font-size: 33px; line-height: 1.8em;}
+
+	
+	.annual-label{
+	  color: #505054; font-size: 14px; font-weight: bold; width: 110px; line-height: 1.8em;}
+	.annual-price{color: #939393; font-size: 17px; width: 110px;} 
+	.common{ font-size:2.5em; color:#00f6fc; line-height: 60px; text-align: center; }
+	.txt{ font-size: 1.5em;color:#00f6fc; position: relative; top: -45px; left: 100px; font-weight: bold}

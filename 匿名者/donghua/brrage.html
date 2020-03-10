@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">	
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<title>你对...字有什么话想说</title>
+		<link rel="stylesheet" href="css/media-100.css" />
+		<link rel="stylesheet"
+  		href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+		<script src="js/jquery-1.9.1.js"></script>
+		<script src="js/layer/mobile/layer.js"></script>
+		<link rel="styleSheet" href="js/layer/mobile/need/layer.css">
+		<link rel="stylesheet" href="css/index.css">
+		<script src='http://res.wx.qq.com/open/js/jweixin-1.2.0.js'></script>
+		<script>
+		  wx.config({
+		    debug: false,
+		    appId: '<?php echo $signPackage["appId"];?>',
+		    timestamp: '<?php echo $signPackage["timestamp"];?>',
+		    nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+		    signature: '<?php echo $signPackage["signature"];?>',
+		    jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone']
+		  });
+		  window.share_config={
+		  	'share':{
+			    title: '你对...有什么话想说', // 分享标题
+			    desc: '匿名评论，随便表白', // 分享描述
+			    link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+			    imgUrl: 'http://wx.jqugo.com/icon.jpg', // 分享图标
+			    type: '', // 分享类型,music、video或link，不填默认为link
+			    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+			    success: function () {
+			        // 用户确认分享后执行的回调函数
+			    },
+			    cancel: function () {
+			        // 用户取消分享后执行的回调函数
+			    }
+			}
+		  }
+		  wx.ready(function(){
+		  	 document.getElementById('audio').play();
+		  	
+		    // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+			  wx.onMenuShareTimeline(window.share_config.share);
+			  wx.onMenuShareAppMessage(window.share_config.share);
+			  wx.onMenuShareQQ(window.share_config.share);
+			  wx.onMenuShareWeibo(window.share_config.share);
+			  wx.onMenuShareQZone(window.share_config.share);
+		  });
+		</script>
+	</head>
+	<body>
+		<header>
+			<h1 class="title en">ANONYMITY</h1>
+			<h1 class="title ch noneCss">[ 你好，匿名者 ]</h1>
+			<p class="music" onclick="switchMusic(event)"></p>
+			<audio 
+				id="audio" 
+				src="image/February shadow .mp3"  
+				autoplay="autoplay"
+				loop="loop">
+			</audio>
+		</header>
+		<div class="top">
+			<!--用户头像-->
+			<img class="portrait" src="image/timg.png" alt="" />
+		</div>
+		
+		<div class="footer first">
+			<div id="creation" style="margin-top: 0.45rem;">创建自己的匿名留言板</div>
+			<div class="shearText">
+				<p style="font-size: .28rem;">发布你的匿名留言板</p>
+				<p>分享给大家看看他们会对你说什么吧？</p>
+			</div>
+			<div class="signature">北京就趣互联网有限公司提供技术支持</div>
+		</div>		
+
+		<div class="footer second noneCss">
+			<div class="div-inp">
+				<div class="textChange" style="">
+				    <span>#我们第一次见面是怎样的？#</span><span>#说说我们之间的小故事#</span><span>#要不要表个白#</span><span>#吐槽#</span>
+				</div>
+				<input type="text" id="details" placeholder="#吐槽#" class="noneCss" />
+				<span id="add_go" class="ensure-span">确定</span>
+			</div>
+			<div class="spitslot">
+				<div class="page pag1">
+					<div>我喜欢你</div>
+					<div>我暗恋你很久了</div>
+					<div>第一次见到你就忘不掉了</div>				
+				</div>
+				<div class="page pag2">
+					<div>晚上能早点睡觉吗？</div>
+					<div>你真的很好</div>
+					<div>你就是外冷内热</div>
+				</div>
+				<div class="page pag3">
+					<div>你笑起来很好看</div>
+					<div>我一直在等你</div>
+					<div>好久不见</div>
+				</div>
+				<div class="page pag4">
+					<div>老实说，你脾气真的有点暴躁</div>
+					<div>你真的超暖</div>
+					<div>你真的超级nice</div>
+				</div>
+				<span id="exchange">换一批</span>
+			</div>
+			<div id="management">管理评论</div>
+		</div>	
+
+		<!-- 管理评论HTML -->
+		<div class="recommend" style="display: none;">
+			<p class="recoTitle">评论管理</p>
+			<ul style="padding: 20px 20px 40px 55px;height: 3rem;overflow-y: scroll;">
+				<li>
+					<label><input type="checkbox" id="ite1">向你表白哦</label>
+				</li>
+				<li>
+					<label><input type="checkbox" id="ite2"> 向你表白哦</label>
+				</li>
+				<li>
+					<label><input type="checkbox" id="ite3"> 向你表白哦</label>
+				</li>
+				<li>
+					<label><input type="checkbox" id="ite4"> 向你表白哦</label>
+				</li>
+				<li>
+					<label><input type="checkbox" id="ite5"> 向你表白哦</label>
+				</li>
+				<li>
+					<label><input type="checkbox" id="ite1">向你表白哦</label>
+				</li>
+				<li>
+					<label><input type="checkbox" id="ite2"> 向你表白哦</label>
+				</li>
+				<li>
+					<label><input type="checkbox" id="ite3"> 向你表白哦</label>
+				</li>
+				<li>
+					<label><input type="checkbox" id="ite4"> 向你表白哦</label>
+				</li>
+				<li>
+					<label><input type="checkbox" id="ite5"> 向你表白哦</label>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(function () {
+			// 标题动画
+			setTimeout(function(){
+				$('.en').addClass('animated slideOutUp');
+				setTimeout(function(){
+					$('.en').addClass('noneCss ');
+					$('.ch').removeClass('noneCss').addClass('animated slideInUp');
+				},500);
+			},1000);
+
+			var height_0 = 0;
+			var top_height = $(".top").height()-15;//获取滚动区域的高
+//			更换吐槽文字
+			var cli_num = 0;
+			$("#exchange").click(function(){
+				$(".page").eq(cli_num).css("display","none");	
+					cli_num=cli_num+1;
+					if(cli_num<4){							
+						$(".page").eq(cli_num).css("display","block");
+					}else if(cli_num==4){
+						$(".page").eq(0).css("display","block");
+						$(".page").eq(3).css("display","none");
+						cli_num=0
+					}			
+			})
+//			点击吐槽文字自动添加
+			$(".page>div").click(function(event){
+				if ($('#details').css('display')==='none') {
+					$('.textChange').css('display','none');
+	    			$('#details').css('display','inline-block');
+				}
+				$(event.target).siblings('div').css('box-shadow','none');
+				$(event.target).css('box-shadow','0 0 15px yellow inset')
+				var text_to =$(this).text();
+				$("#details").val(text_to);
+			})
+//			添加滚动吐槽
+			$(".ensure-span").click(function(){		
+				if($("#details").val()){
+				var rand = parseInt(Math.random() * (top_height - height_0 + 1) + height_0)+"px";  					
+				var new_div  = $("<div/>")
+					new_div.text($("#details").val());
+					new_div.attr('class','dm-text');
+					new_div.css('top',rand);
+					new_div.appendTo('.top');
+				}										
+			})
+//			点击点亮红心
+			$(document).on("click", ".dm-text", function(){ 
+				$(this).css("background-image","url(image/zanOK.png)")
+				
+			}); 
+//			向数据库添加弹幕文字
+			$('#add_go').click(function () {
+				if ($('#details').val()) {
+					// $.post("http://127.0.0.1/tp5_mqsql/public/index/index/add",{
+					// 	msg:$('#details').val()
+					// },function(resp){
+					// 	console.log(resp);
+	    // 			});
+				}else{
+					return
+				}
+				
+			})
+//			二次登陆获取数据库内的弹幕文字
+			/*
+			 *这里做逻辑判断，如果用户数据库内没有数据
+			 * 那么就是第一次登陆
+			 * 显示第一次登陆的页面样式
+			 */
+			// $.post("http://127.0.0.1/tp5_mqsql/public/index/index/show",
+			// 	function(resp){	
+			// 		if(resp){	
+			// 			var data = JSON.parse(resp);
+			// 			var data_length =data.length;
+			// 			var num_i = 0;
+			// 			//每800毫秒创建一个弹幕
+			//     		var domgo = setInterval(dom,800);
+			//     		function dom(){
+			//     			if (num_i >= data_length) {
+			//     				clearInterval(domgo);
+			//     				return;
+			//     			}
+			//     			var top_num = parseInt(Math.random() * (top_height - height_0 + 1) + height_0)+"px";							
+			// 				var new_div2  = $("<div/>")
+			// 				new_div2.text(data[num_i].msg);
+			// 				new_div2.attr('class','dm-text');
+			// 				new_div2.css('top',top_num);
+			// 				new_div2.appendTo('.top');
+			//     			num_i= num_i+1;   			
+			//     		}				
+			// 		}
+   //  		});	
+    		
+		})
+
+		// 切换到下一条
+		$('#creation').click(function(){
+			$('.first').addClass('animated fadeOut');
+			setTimeout(function(){
+				$('.first').addClass('noneCss ');
+				$('.second').removeClass('noneCss').addClass('animated fadeIn');
+
+				// 吐槽框里的文字切换
+			    var txtArray=['#我们第一次见面是怎样的？#','#说说我们之间的小故事#','#要不要表个白#','#吐槽#'];
+				setInterval(function() {
+		            $('div').animate({
+		                scrollLeft: 250 + "px"
+		            }, 500, function() {
+		                var first = txtArray[0];
+		                txtArray.splice(jQuery.inArray(first, txtArray), 1);
+		                txtArray.push(first);
+
+		                var images =  $('div.textChange').find('span');
+		                images.each(function(index, e) {
+		                    $(e).html( txtArray[index]);
+		                });
+		                $('div').scrollLeft("0px");
+		            });
+				}, 2000)
+			},100);
+		})
+		// 切换音乐
+		function switchMusic(e) {
+			var audio = document.getElementById("audio");
+	        if(audio.paused) {
+	            audio.play();
+	            e.target.style.backgroundImage='url("image/play.gif")';
+	        }else{
+	            audio.pause();
+	            e.target.style.backgroundImage='url("image/pause.png")';
+	        }
+	    }
+
+	    // 管理评论
+	    $('#management').click(function(){
+	    	layer.open({
+			    content: $('.recommend').html(),
+			    btn: ['删除', '取消'],
+			    yes: function(index){
+			      // 发送删除数据的请求
+			      // $.post({})
+			      layer.close(index);
+			    }
+			 });
+	    })
+
+	    // 输入和展示切换
+	    $('.textChange span').click(function(){
+	    	$('.textChange').css('display','none');
+	    	$('#details').css('display','inline-block');
+	    	$('#details').focus();
+	    })
+
+	</script>
+</html>

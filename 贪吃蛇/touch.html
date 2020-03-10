@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	    
+	    <img src="img/cloud.png" alt="" id="target"  />
+	    
+	</body>
+</html>
+<script src="js/touch.js"></script>
+<script>
+
+	//  关掉轻拍事件
+	//  touch.js 是一个百度clouda团队开发的支持移动端的手势库
+	//  添加事件
+	// touch.on(arg1, arg2, arg3);
+	// 第一个参数(element || string): 元素或者是选择器字符串
+	// 第二个参数(string): 事件的类型, 比如 swipeleft, tap, hold等等, 第二参数可以添加多个事件类型, 这些事件类型中间用空格隔开
+	// 第三个参数(callback): 回调函数, 出发时间后执行的方法
+
+	touch.config.tap = true;
+	touch.config.swipeMinDistance = 5;
+	touch.on('#target', 'touchstart', function(ev){
+	    ev.preventDefault();
+	});
+
+
+    touch.on('#target', 'tap swipeleft', function (event) {
+    	alert(event.type);
+    });
+    
+    
+    
+</script>
